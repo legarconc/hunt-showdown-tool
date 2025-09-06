@@ -101,38 +101,116 @@ const CONSUMABLES = {
       unlock_level: 26
     }
   ],
-  specialty: [
+  explosives: [
+    {
+      id: 'frag_bomb_consumable',
+      name: 'Frag Bomb',
+      category: 'explosives',
+      price: 70,
+      description: 'High damage explosive with shrapnel',
+      unlock_level: 1
+    },
+    {
+      id: 'dynamite_consumable',
+      name: 'Dynamite Stick',
+      category: 'explosives',
+      price: 18,
+      description: 'Basic explosive with long fuse',
+      unlock_level: 1
+    },
+    {
+      id: 'big_dynamite_consumable',
+      name: 'Big Dynamite Bundle',
+      category: 'explosives',
+      price: 110,
+      description: 'High damage explosive for compounds',
+      unlock_level: 6
+    },
+    {
+      id: 'sticky_bomb_consumable',
+      name: 'Sticky Bomb',
+      category: 'explosives',
+      price: 64,
+      description: 'Adheres to surfaces before exploding',
+      unlock_level: 19
+    },
+    {
+      id: 'waxed_dynamite',
+      name: 'Waxed Dynamite Stick',
+      category: 'explosives',
+      price: 24,
+      description: 'Water-resistant dynamite stick',
+      unlock_level: 12
+    }
+  ],
+  fire: [
+    {
+      id: 'fire_bomb_consumable',
+      name: 'Fire Bomb',
+      category: 'fire',
+      price: 25,
+      description: 'Creates fire area on impact',
+      unlock_level: 1
+    },
+    {
+      id: 'hellfire_bomb_consumable',
+      name: 'Hellfire Bomb',
+      category: 'fire',
+      price: 70,
+      description: 'Larger fire area with longer duration',
+      unlock_level: 29
+    },
+    {
+      id: 'liquid_fire_bomb_consumable',
+      name: 'Liquid Fire Bomb',
+      category: 'fire',
+      price: 50,
+      description: 'Spreads burning liquid on surfaces',
+      unlock_level: 24
+    }
+  ],
+  poison: [
+    {
+      id: 'poison_bomb_consumable',
+      name: 'Poison Bomb',
+      category: 'poison',
+      price: 25,
+      description: 'Creates poisonous cloud',
+      unlock_level: 1
+    },
+    {
+      id: 'hive_bomb_consumable',
+      name: 'Hive Bomb',
+      category: 'poison',
+      price: 60,
+      description: 'Releases poisonous insects',
+      unlock_level: 27
+    }
+  ],
+  utility: [
+    {
+      id: 'choke_bomb_consumable',
+      name: 'Choke Bomb',
+      category: 'utility',
+      price: 25,
+      description: 'Extinguishes fires and blocks vision',
+      unlock_level: 1
+    },
     {
       id: 'concertina_bomb',
       name: 'Concertina Bomb',
-      category: 'specialty',
+      category: 'utility',
       price: 48,
       description: 'Creates concertina wire barrier',
       unlock_level: 14
     },
     {
-      id: 'quad_derringer',
-      name: 'Quad Derringer',
-      category: 'specialty',
-      price: 35,
-      description: 'Four-shot backup pistol',
+      id: 'chaos_bomb',
+      name: 'Chaos Bomb',
+      category: 'utility',
+      price: 15,
+      description: 'Creates multiple random sound effects',
       unlock_level: 1
-    },
-    {
-      id: 'throwing_knives',
-      name: 'Throwing Knives',
-      category: 'specialty',
-      price: 30,
-      description: 'Silent ranged throwing weapons',
-      unlock_level: 1
-    },
-    {
-      id: 'throwing_axes',
-      name: 'Throwing Axes', 
-      category: 'specialty',
-      price: 50,
-      description: 'High damage throwing weapons',
-      unlock_level: 23
     }
   ]
 };
@@ -141,5 +219,8 @@ const CONSUMABLE_CATEGORIES = {
   medical: 'Medical',
   antidotes: 'Antidotes',
   stamina: 'Stamina',
-  specialty: 'Specialty'
+  explosives: 'Explosives',
+  fire: 'Fire',
+  poison: 'Poison',
+  utility: 'Utility'
 };

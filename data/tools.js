@@ -77,6 +77,14 @@ const TOOLS = {
       unlock_level: 14
     },
     {
+      id: 'poison_trip_mine',
+      name: 'Poison Trip Mine',
+      category: 'traps',
+      price: 30,
+      description: 'Releases poison gas when triggered',
+      unlock_level: 17
+    },
+    {
       id: 'alert_trip_mine',
       name: 'Alert Trip Mine',
       category: 'traps',
@@ -197,12 +205,72 @@ const TOOLS = {
       unlock_level: 1
     },
     {
+      id: 'decoys',
+      name: 'Decoys',
+      category: 'utility_advanced',
+      price: 8,
+      description: 'Throwable distraction device',
+      unlock_level: 1
+    },
+    {
       id: 'spyglass',
       name: 'Spyglass',
       category: 'utility_advanced',
       price: 8,
       description: 'Provides magnified view for scouting',
       unlock_level: 1
+    },
+    {
+      id: 'flare_pistol',
+      name: 'Flare Pistol',
+      category: 'utility_advanced',
+      price: 24,
+      description: 'Launches flares for illumination',
+      unlock_level: 5
+    }
+  ],
+  throwables: [
+    {
+      id: 'throwing_knives',
+      name: 'Throwing Knives',
+      category: 'throwables',
+      price: 30,
+      description: 'Silent ranged throwing weapons',
+      unlock_level: 1
+    },
+    {
+      id: 'throwing_axes',
+      name: 'Throwing Axes',
+      category: 'throwables',
+      price: 50,
+      description: 'High damage throwing weapons',
+      unlock_level: 23
+    },
+    {
+      id: 'throwing_spear',
+      name: 'Throwing Spear',
+      category: 'throwables',
+      price: 150,
+      description: 'Long range throwing spear with high damage',
+      unlock_level: 40
+    }
+  ],
+  pocket_pistols: [
+    {
+      id: 'quad_derringer',
+      name: 'Quad Derringer',
+      category: 'pocket_pistols',
+      price: 35,
+      description: 'Four-shot backup pistol',
+      unlock_level: 1
+    },
+    {
+      id: 'derringer_pennyshot',
+      name: 'Derringer Pennyshot',
+      category: 'pocket_pistols',
+      price: 26,
+      description: 'Single-shot derringer with pennyshot',
+      unlock_level: 6
     }
   ]
 };
@@ -214,5 +282,7 @@ const TOOL_CATEGORIES = {
   explosives: 'Explosives',
   fire: 'Fire',
   poison: 'Poison',
-  utility_advanced: 'Advanced Utility'
+  utility_advanced: 'Advanced Utility',
+  throwables: 'Throwing Weapons',
+  pocket_pistols: 'Pocket Pistols'
 };
