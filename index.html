@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1a1a1a">
+    <title>Hunt: Showdown 1896 Companion</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+    <nav class="bottom-nav">
+        <button class="nav-btn active" data-screen="loadout" aria-label="Loadout Builder">
+            <span class="nav-icon">⚔️</span>
+            <span class="nav-label">Loadout</span>
+        </button>
+        <button class="nav-btn" data-screen="weapons" aria-label="Weapon Database">
+            <span class="nav-icon">🔫</span>
+            <span class="nav-label">Weapons</span>
+        </button>
+        <button class="nav-btn" data-screen="saved" aria-label="Saved Builds">
+            <span class="nav-icon">💾</span>
+            <span class="nav-label">Saved</span>
+        </button>
+    </nav>
+
+    <main class="main-content">
+        <!-- Loadout Builder Screen -->
+        <section class="screen active" id="loadout-screen">
+            <header class="screen-header">
+                <h1>Loadout Builder</h1>
+                <div class="budget-display">
+                    <span class="budget-label">Budget:</span>
+                    <span class="budget-amount" id="current-budget">$0</span>
+                    <span class="budget-max">/ $2000</span>
+                </div>
+            </header>
+
+            <div class="loadout-slots">
+                <div class="slot-category">
+                    <h2>Primary Weapon</h2>
+                    <div class="weapon-slot" data-slot="primary">
+                        <button class="slot-button" id="primary-slot">
+                            <span class="slot-placeholder">Select Primary</span>
+                            <span class="slot-price"></span>
+                        </button>
+                        <div class="variant-slots" id="primary-variants"></div>
+                    </div>
+                </div>
+
+                <div class="slot-category">
+                    <h2>Secondary Weapon</h2>
+                    <div class="weapon-slot" data-slot="secondary">
+                        <button class="slot-button" id="secondary-slot">
+                            <span class="slot-placeholder">Select Secondary</span>
+                            <span class="slot-price"></span>
+                        </button>
+                        <div class="variant-slots" id="secondary-variants"></div>
+                    </div>
+                </div>
+
+                <div class="slot-category">
+                    <h2>Tools</h2>
+                    <div class="tool-slots">
+                        <div class="tool-slot" data-slot="tool1">
+                            <button class="slot-button" id="tool1-slot">
+                                <span class="slot-placeholder">Tool 1</span>
+                                <span class="slot-price"></span>
+                            </button>
+                        </div>
+                        <div class="tool-slot" data-slot="tool2">
+                            <button class="slot-button" id="tool2-slot">
+                                <span class="slot-placeholder">Tool 2</span>
+                                <span class="slot-price"></span>
+                            </button>
+                        </div>
+                        <div class="tool-slot" data-slot="tool3">
+                            <button class="slot-button" id="tool3-slot">
+                                <span class="slot-placeholder">Tool 3</span>
+                                <span class="slot-price"></span>
+                            </button>
+                        </div>
+                        <div class="tool-slot" data-slot="tool4">
+                            <button class="slot-button" id="tool4-slot">
+                                <span class="slot-placeholder">Tool 4</span>
+                                <span class="slot-price"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slot-category">
+                    <h2>Consumables</h2>
+                    <div class="consumable-slots">
+                        <div class="consumable-slot" data-slot="consumable1">
+                            <button class="slot-button" id="consumable1-slot">
+                                <span class="slot-placeholder">Consumable 1</span>
+                                <span class="slot-price"></span>
+                            </button>
+                        </div>
+                        <div class="consumable-slot" data-slot="consumable2">
+                            <button class="slot-button" id="consumable2-slot">
+                                <span class="slot-placeholder">Consumable 2</span>
+                                <span class="slot-price"></span>
+                            </button>
+                        </div>
+                        <div class="consumable-slot" data-slot="consumable3">
+                            <button class="slot-button" id="consumable3-slot">
+                                <span class="slot-placeholder">Consumable 3</span>
+                                <span class="slot-price"></span>
+                            </button>
+                        </div>
+                        <div class="consumable-slot" data-slot="consumable4">
+                            <button class="slot-button" id="consumable4-slot">
+                                <span class="slot-placeholder">Consumable 4</span>
+                                <span class="slot-price"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="loadout-actions">
+                <button class="action-btn clear-btn" id="clear-loadout">Clear All</button>
+                <button class="action-btn save-btn" id="save-loadout">Save Loadout</button>
+            </div>
+        </section>
+
+        <!-- Weapon Database Screen -->
+        <section class="screen" id="weapons-screen">
+            <header class="screen-header">
+                <h1>Weapon Database</h1>
+                <div class="filters">
+                    <select class="filter-select" id="weapon-category">
+                        <option value="all">All Categories</option>
+                        <option value="rifles">Rifles</option>
+                        <option value="shotguns">Shotguns</option>
+                        <option value="pistols">Pistols</option>
+                        <option value="crossbows">Crossbows</option>
+                    </select>
+                    <select class="filter-select" id="prestige-filter">
+                        <option value="all">All Weapons</option>
+                        <option value="unlocked">Unlocked Only</option>
+                    </select>
+                </div>
+            </header>
+            <div class="weapon-list" id="weapon-list"></div>
+        </section>
+
+        <!-- Saved Builds Screen -->
+        <section class="screen" id="saved-screen">
+            <header class="screen-header">
+                <h1>Saved Builds</h1>
+            </header>
+            <div class="saved-builds" id="saved-builds"></div>
+        </section>
+    </main>
+
+    <!-- Item Selection Modal -->
+    <div class="modal" id="item-modal">
+        <div class="modal-content">
+            <header class="modal-header">
+                <h2 id="modal-title">Select Item</h2>
+                <button class="close-btn" id="close-modal" aria-label="Close">×</button>
+            </header>
+            <div class="modal-body">
+                <div class="search-container">
+                    <input type="text" class="search-input" id="item-search" placeholder="Search items...">
+                </div>
+                <div class="item-list" id="modal-item-list"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Save Loadout Modal -->
+    <div class="modal" id="save-modal">
+        <div class="modal-content">
+            <header class="modal-header">
+                <h2>Save Loadout</h2>
+                <button class="close-btn" id="close-save-modal" aria-label="Close">×</button>
+            </header>
+            <div class="modal-body">
+                <input type="text" class="text-input" id="loadout-name" placeholder="Enter loadout name...">
+                <div class="modal-actions">
+                    <button class="action-btn cancel-btn" id="cancel-save">Cancel</button>
+                    <button class="action-btn save-btn" id="confirm-save">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="data/weapons.js"></script>
+    <script src="data/tools.js"></script>
+    <script src="data/consumables.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

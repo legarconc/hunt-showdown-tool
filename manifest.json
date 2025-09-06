@@ -1,0 +1,20 @@
+{
+  "name": "Hunt: Showdown 1896 Companion",
+  "short_name": "Hunt Companion",
+  "description": "Mobile companion tool for Hunt: Showdown 1896 loadout building",
+  "version": "1.0.0",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#1a1a1a",
+  "background_color": "#1a1a1a",
+  "icons": [
+    {
+      "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgdmlld0JveD0iMCAwIDE5MiAxOTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxOTIiIGhlaWdodD0iMTkyIiBmaWxsPSIjMUExQTFBIi8+CjxwYXRoIGQ9Ik05NiA0OEw0OCA5NkwzMiAxMDRMMzIgMTQ0TDQ4IDE1Mkw5NiAxMDRMOTYgMTQ0TDE0NCAxNTJMMTYwIDE0NFYxMDRMMTQ0IDk2TDk2IDQ4WiIgZmlsbD0iI0Q0QUYzNyIvPgo8L3N2Zz4K",
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    }
+  ],
+  "categories": ["games", "utilities"],
+  "screenshots": []
+}
