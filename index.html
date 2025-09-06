@@ -18,6 +18,10 @@
             <span class="nav-icon">🔫</span>
             <span class="nav-label">Weapons</span>
         </button>
+        <button class="nav-btn" data-screen="traits" aria-label="Traits Database">
+            <span class="nav-icon">⭐</span>
+            <span class="nav-label">Traits</span>
+        </button>
         <button class="nav-btn" data-screen="saved" aria-label="Saved Builds">
             <span class="nav-icon">💾</span>
             <span class="nav-label">Saved</span>
@@ -147,6 +151,53 @@
             <div class="weapon-list" id="weapon-list"></div>
         </section>
 
+        <!-- Traits Screen -->
+        <section class="screen" id="traits-screen">
+            <header class="screen-header">
+                <h1>Traits</h1>
+                <div class="trait-stats">
+                    <div class="upgrade-points">
+                        <span class="points-label">Upgrade Points:</span>
+                        <span class="points-used" id="points-used">0</span>
+                        <span class="points-max">/ 50</span>
+                    </div>
+                    <div class="traits-count">
+                        <span class="traits-label">Traits:</span>
+                        <span class="traits-equipped" id="traits-equipped">0</span>
+                        <span class="traits-max">/ 15</span>
+                    </div>
+                </div>
+                <div class="filters">
+                    <select class="filter-select" id="trait-category">
+                        <option value="all">All Categories</option>
+                        <option value="offensive">Offensive</option>
+                        <option value="defensive">Defensive</option>
+                        <option value="movement">Movement</option>
+                        <option value="supportive">Supportive</option>
+                    </select>
+                    <select class="filter-select" id="trait-cost">
+                        <option value="all">All Costs</option>
+                        <option value="1-2">1-2 Points</option>
+                        <option value="3-4">3-4 Points</option>
+                        <option value="5-6">5-6 Points</option>
+                        <option value="7-9">7-9 Points</option>
+                    </select>
+                </div>
+            </header>
+            <div class="trait-list" id="trait-list"></div>
+            <div class="selected-traits">
+                <h3>Selected Traits</h3>
+                <div class="selected-trait-list" id="selected-trait-list">
+                    <div class="empty-state">
+                        <p>No traits selected</p>
+                    </div>
+                </div>
+                <div class="trait-actions">
+                    <button class="action-btn clear-btn" id="clear-traits">Clear All</button>
+                </div>
+            </div>
+        </section>
+
         <!-- Saved Builds Screen -->
         <section class="screen" id="saved-screen">
             <header class="screen-header">
@@ -192,6 +243,7 @@
     <script src="data/weapons.js"></script>
     <script src="data/tools.js"></script>
     <script src="data/consumables.js"></script>
+    <script src="data/traits.js"></script>
     <script src="app.js"></script>
 </body>
 </html>

@@ -9,8 +9,11 @@ class HuntCompanion {
             tools: [null, null, null, null],
             consumables: [null, null, null, null]
         };
+        this.selectedTraits = [];
         this.maxBudget = 2000;
         this.playerLevel = 100;
+        this.maxUpgradePoints = 50;
+        this.maxTraits = 15;
         
         this.init();
     }
@@ -19,6 +22,7 @@ class HuntCompanion {
         this.setupNavigation();
         this.setupLoadoutBuilder();
         this.setupWeaponDatabase();
+        this.setupTraitsDatabase();
         this.setupSavedBuilds();
         this.setupModals();
         this.loadStoredData();
@@ -46,6 +50,8 @@ class HuntCompanion {
         
         if (screen === 'weapons') {
             this.renderWeaponDatabase();
+        } else if (screen === 'traits') {
+            this.renderTraitsDatabase();
         } else if (screen === 'saved') {
             this.renderSavedBuilds();
         }
@@ -330,6 +336,23 @@ class HuntCompanion {
         });
     }
 
+    setupTraitsDatabase() {
+        const categoryFilter = document.getElementById('trait-category');
+        const costFilter = document.getElementById('trait-cost');
+        
+        categoryFilter.addEventListener('change', () => {
+            this.renderTraitsDatabase();
+        });
+        
+        costFilter.addEventListener('change', () => {
+            this.renderTraitsDatabase();
+        });
+        
+        document.getElementById('clear-traits').addEventListener('click', () => {
+            this.clearTraits();
+        });
+    }
+
     setupSavedBuilds() {
         
     }
@@ -482,6 +505,143 @@ class HuntCompanion {
         } catch {
             
         }
+    }
+
+    getAllTraits() {
+        const traits = [];
+        Object.values(TRAITS).forEach(category => {
+            category.forEach(trait => {
+                traits.push({ ...trait, type: 'trait' });
+            });
+        });
+        return traits.filter(t => t.unlock_level <= this.playerLevel);
+    }
+
+    renderTraitsDatabase() {
+        const container = document.getElementById('trait-list');
+        const categoryFilter = document.getElementById('trait-category').value;
+        const costFilter = document.getElementById('trait-cost').value;
+        
+        let traits = this.getAllTraits();
+        
+        if (categoryFilter !== 'all') {
+            traits = traits.filter(t => t.category === categoryFilter);
+        }
+        
+        if (costFilter !== 'all') {
+            const [min, max] = costFilter.split('-').map(Number);
+            traits = traits.filter(t => t.cost >= min && t.cost <= max);
+        }
+        
+        container.innerHTML = '';
+        
+        traits.forEach(trait => {
+            const isSelected = this.selectedTraits.some(t => t.id === trait.id);
+            const traitEl = document.createElement('div');
+            traitEl.className = `trait-item ${isSelected ? 'selected' : ''}`;
+            traitEl.innerHTML = `
+                <h3>${trait.name}</h3>
+                <div class="trait-info">
+                    <span class="trait-category">${TRAIT_CATEGORIES[trait.category]}</span>
+                    <span class="trait-cost">${trait.cost} points</span>
+                </div>
+                <div class="trait-description">${trait.description}</div>
+                <div class="trait-level">Unlocks at Level ${trait.unlock_level}</div>
+            `;
+            
+            if (!isSelected) {
+                traitEl.addEventListener('click', () => {
+                    this.selectTrait(trait);
+                });
+            }
+            
+            container.appendChild(traitEl);
+        });
+    }
+
+    selectTrait(trait) {
+        if (this.selectedTraits.length >= this.maxTraits) {
+            alert(`Maximum ${this.maxTraits} traits allowed`);
+            return;
+        }
+        
+        const totalCost = this.calculateTraitCost() + trait.cost;
+        if (totalCost > this.maxUpgradePoints) {
+            alert(`Not enough upgrade points. Need ${trait.cost}, available: ${this.maxUpgradePoints - this.calculateTraitCost()}`);
+            return;
+        }
+        
+        this.selectedTraits.push(trait);
+        this.updateTraitDisplay();
+        this.renderTraitsDatabase();
+    }
+
+    removeTrait(traitId) {
+        this.selectedTraits = this.selectedTraits.filter(t => t.id !== traitId);
+        this.updateTraitDisplay();
+        this.renderTraitsDatabase();
+    }
+
+    clearTraits() {
+        this.selectedTraits = [];
+        this.updateTraitDisplay();
+        this.renderTraitsDatabase();
+    }
+
+    calculateTraitCost() {
+        return this.selectedTraits.reduce((total, trait) => total + trait.cost, 0);
+    }
+
+    updateTraitDisplay() {
+        const pointsUsed = this.calculateTraitCost();
+        const traitsCount = this.selectedTraits.length;
+        
+        document.getElementById('points-used').textContent = pointsUsed;
+        document.getElementById('traits-equipped').textContent = traitsCount;
+        
+        const pointsEl = document.getElementById('points-used');
+        if (pointsUsed > this.maxUpgradePoints) {
+            pointsEl.style.color = 'var(--danger)';
+        } else {
+            pointsEl.style.color = 'var(--accent)';
+        }
+        
+        const traitsEl = document.getElementById('traits-equipped');
+        if (traitsCount > this.maxTraits) {
+            traitsEl.style.color = 'var(--danger)';
+        } else {
+            traitsEl.style.color = 'var(--accent)';
+        }
+        
+        this.renderSelectedTraits();
+    }
+
+    renderSelectedTraits() {
+        const container = document.getElementById('selected-trait-list');
+        
+        if (this.selectedTraits.length === 0) {
+            container.innerHTML = '<div class="empty-state"><p>No traits selected</p></div>';
+            return;
+        }
+        
+        container.innerHTML = '';
+        
+        this.selectedTraits.forEach(trait => {
+            const traitEl = document.createElement('div');
+            traitEl.className = 'selected-trait';
+            traitEl.innerHTML = `
+                <span class="trait-name">${trait.name}</span>
+                <span class="trait-cost">${trait.cost} pts</span>
+                <button class="remove-trait" data-trait="${trait.id}" aria-label="Remove trait">×</button>
+            `;
+            
+            const removeBtn = traitEl.querySelector('.remove-trait');
+            removeBtn.addEventListener('click', () => {
+                this.removeTrait(trait.id);
+            });
+            
+            container.appendChild(traitEl);
+        });
     }
 
     saveSettings() {
