@@ -7,22 +7,6 @@ const TOOLS = {
       price: 30,
       description: 'Heals one health chunk completely',
       unlock_level: 1
-    },
-    {
-      id: 'medkit',
-      name: 'Medkit',
-      category: 'medical', 
-      price: 65,
-      description: 'Heals up to 100 HP, can revive downed hunters',
-      unlock_level: 11
-    },
-    {
-      id: 'regeneration_shot',
-      name: 'Regeneration Shot',
-      category: 'medical',
-      price: 25,
-      description: 'Slowly regenerates health over time',
-      unlock_level: 22
     }
   ],
   utility: [
@@ -57,6 +41,14 @@ const TOOLS = {
       price: 25,
       description: 'High damage melee weapon',
       unlock_level: 18
+    },
+    {
+      id: 'spyglass',
+      name: 'Spyglass',
+      category: 'utility',
+      price: 8,
+      description: 'Provides magnified view for scouting',
+      unlock_level: 1
     }
   ],
   traps: [
@@ -93,38 +85,30 @@ const TOOLS = {
       unlock_level: 20
     }
   ],
-  explosives: [
+  distraction: [
     {
-      id: 'frag_bomb',
-      name: 'Frag Bomb',
-      category: 'explosives',
-      price: 70,
-      description: 'High damage explosive with shrapnel',
+      id: 'blank_fire_decoys',
+      name: 'Blank Fire Decoys',
+      category: 'distraction',
+      price: 10,
+      description: 'Creates fake gunshot sounds',
       unlock_level: 1
     },
     {
-      id: 'dynamite',
-      name: 'Dynamite Stick',
-      category: 'explosives',
-      price: 18,
-      description: 'Basic explosive with long fuse',
+      id: 'decoy_fuses',
+      name: 'Decoy Fuses',
+      category: 'distraction',
+      price: 6,
+      description: 'Mimics dynamite fuse sound',
       unlock_level: 1
     },
     {
-      id: 'big_dynamite',
-      name: 'Big Dynamite Bundle',
-      category: 'explosives',
-      price: 110,
-      description: 'High damage explosive for compounds',
-      unlock_level: 6
-    },
-    {
-      id: 'sticky_bomb',
-      name: 'Sticky Bomb',
-      category: 'explosives',
-      price: 64,
-      description: 'Adheres to surfaces before exploding',
-      unlock_level: 19
+      id: 'decoys',
+      name: 'Decoys',
+      category: 'distraction',
+      price: 8,
+      description: 'Throwable distraction device',
+      unlock_level: 1
     }
   ],
   fire: [
@@ -137,93 +121,9 @@ const TOOLS = {
       unlock_level: 1
     },
     {
-      id: 'fire_bomb',
-      name: 'Fire Bomb',
-      category: 'fire',
-      price: 25,
-      description: 'Creates fire area on impact',
-      unlock_level: 1
-    },
-    {
-      id: 'hellfire_bomb',
-      name: 'Hellfire Bomb',
-      category: 'fire',
-      price: 70,
-      description: 'Larger fire area with longer duration',
-      unlock_level: 29
-    },
-    {
-      id: 'liquid_fire_bomb',
-      name: 'Liquid Fire Bomb',
-      category: 'fire',
-      price: 50,
-      description: 'Spreads burning liquid on surfaces',
-      unlock_level: 24
-    }
-  ],
-  poison: [
-    {
-      id: 'poison_bomb',
-      name: 'Poison Bomb',
-      category: 'poison',
-      price: 25,
-      description: 'Creates poisonous cloud',
-      unlock_level: 1
-    },
-    {
-      id: 'hive_bomb',
-      name: 'Hive Bomb',
-      category: 'poison',
-      price: 60,
-      description: 'Releases poisonous insects',
-      unlock_level: 27
-    }
-  ],
-  utility_advanced: [
-    {
-      id: 'choke_bomb',
-      name: 'Choke Bomb',
-      category: 'utility_advanced',
-      price: 25,
-      description: 'Extinguishes fires and blocks vision',
-      unlock_level: 1
-    },
-    {
-      id: 'blank_fire_decoys',
-      name: 'Blank Fire Decoys',
-      category: 'utility_advanced',
-      price: 10,
-      description: 'Creates fake gunshot sounds',
-      unlock_level: 1
-    },
-    {
-      id: 'decoy_fuses',
-      name: 'Decoy Fuses',
-      category: 'utility_advanced',
-      price: 6,
-      description: 'Mimics dynamite fuse sound',
-      unlock_level: 1
-    },
-    {
-      id: 'decoys',
-      name: 'Decoys',
-      category: 'utility_advanced',
-      price: 8,
-      description: 'Throwable distraction device',
-      unlock_level: 1
-    },
-    {
-      id: 'spyglass',
-      name: 'Spyglass',
-      category: 'utility_advanced',
-      price: 8,
-      description: 'Provides magnified view for scouting',
-      unlock_level: 1
-    },
-    {
       id: 'flare_pistol',
       name: 'Flare Pistol',
-      category: 'utility_advanced',
+      category: 'fire',
       price: 24,
       description: 'Launches flares for illumination',
       unlock_level: 5
@@ -272,6 +172,16 @@ const TOOLS = {
       description: 'Single-shot derringer with pennyshot',
       unlock_level: 6
     }
+  ],
+  utility_advanced: [
+    {
+      id: 'choke_bomb',
+      name: 'Choke Bomb',
+      category: 'utility_advanced',
+      price: 25,
+      description: 'Extinguishes fires and blocks vision',
+      unlock_level: 1
+    }
   ]
 };
 
@@ -279,10 +189,9 @@ const TOOL_CATEGORIES = {
   medical: 'Medical',
   utility: 'Utility',
   traps: 'Traps', 
-  explosives: 'Explosives',
-  fire: 'Fire',
-  poison: 'Poison',
-  utility_advanced: 'Advanced Utility',
+  distraction: 'Distraction',
+  fire: 'Fire & Light',
   throwables: 'Throwing Weapons',
-  pocket_pistols: 'Pocket Pistols'
+  pocket_pistols: 'Pocket Pistols',
+  utility_advanced: 'Advanced Utility'
 };

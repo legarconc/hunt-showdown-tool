@@ -17,12 +17,12 @@ const CONSUMABLES = {
       unlock_level: 14
     },
     {
-      id: 'strong_vitality_shot',
-      name: 'Strong Vitality Shot',
+      id: 'medical_pack',
+      name: 'Medical Pack',
       category: 'medical',
-      price: 125,
-      description: 'Restores 100 HP over time',
-      unlock_level: 31
+      price: 100,
+      description: 'Instantly heals health chunks',
+      unlock_level: 25
     },
     {
       id: 'weak_regeneration_shot',
@@ -33,7 +33,7 @@ const CONSUMABLES = {
       unlock_level: 1
     },
     {
-      id: 'regeneration_shot_consumable',
+      id: 'regeneration_shot',
       name: 'Regeneration Shot',
       category: 'medical',
       price: 50,
@@ -41,12 +41,12 @@ const CONSUMABLES = {
       unlock_level: 22
     },
     {
-      id: 'strong_regeneration_shot',
-      name: 'Strong Regeneration Shot',
+      id: 'recovery_shot',
+      name: 'Recovery Shot',
       category: 'medical',
-      price: 100,
-      description: 'Fast HP regeneration over time',
-      unlock_level: 38
+      price: 90,
+      description: 'Advanced healing over time',
+      unlock_level: 35
     }
   ],
   antidotes: [
@@ -65,14 +65,6 @@ const CONSUMABLES = {
       price: 50,
       description: 'Cures poison and provides immunity',
       unlock_level: 17
-    },
-    {
-      id: 'strong_antidote_shot',
-      name: 'Strong Antidote Shot',
-      category: 'antidotes',
-      price: 100,
-      description: 'Cures poison and provides long immunity',
-      unlock_level: 34
     }
   ],
   stamina: [
@@ -91,27 +83,11 @@ const CONSUMABLES = {
       price: 60,
       description: 'Restores stamina and improves regeneration',
       unlock_level: 9
-    },
-    {
-      id: 'strong_stamina_shot',
-      name: 'Strong Stamina Shot',
-      category: 'stamina',
-      price: 110,
-      description: 'Full stamina restore and enhanced regeneration',
-      unlock_level: 26
     }
   ],
   explosives: [
     {
-      id: 'frag_bomb_consumable',
-      name: 'Frag Bomb',
-      category: 'explosives',
-      price: 70,
-      description: 'High damage explosive with shrapnel',
-      unlock_level: 1
-    },
-    {
-      id: 'dynamite_consumable',
+      id: 'dynamite_stick',
       name: 'Dynamite Stick',
       category: 'explosives',
       price: 18,
@@ -119,7 +95,23 @@ const CONSUMABLES = {
       unlock_level: 1
     },
     {
-      id: 'big_dynamite_consumable',
+      id: 'waxed_dynamite_stick',
+      name: 'Waxed Dynamite Stick',
+      category: 'explosives',
+      price: 24,
+      description: 'Water-resistant dynamite stick',
+      unlock_level: 12
+    },
+    {
+      id: 'dynamite_bundle',
+      name: 'Dynamite Bundle',
+      category: 'explosives',
+      price: 90,
+      description: 'Multiple dynamite sticks bundled together',
+      unlock_level: 18
+    },
+    {
+      id: 'big_dynamite_bundle',
       name: 'Big Dynamite Bundle',
       category: 'explosives',
       price: 110,
@@ -127,7 +119,15 @@ const CONSUMABLES = {
       unlock_level: 6
     },
     {
-      id: 'sticky_bomb_consumable',
+      id: 'dark_dynamite_satchel',
+      name: 'Dark Dynamite Satchel',
+      category: 'explosives',
+      price: 75,
+      description: 'Event explosive with special effects',
+      unlock_level: 20
+    },
+    {
+      id: 'sticky_bomb',
       name: 'Sticky Bomb',
       category: 'explosives',
       price: 64,
@@ -135,17 +135,17 @@ const CONSUMABLES = {
       unlock_level: 19
     },
     {
-      id: 'waxed_dynamite',
-      name: 'Waxed Dynamite Stick',
+      id: 'frag_bomb',
+      name: 'Frag Bomb',
       category: 'explosives',
-      price: 24,
-      description: 'Water-resistant dynamite stick',
-      unlock_level: 12
+      price: 70,
+      description: 'High damage explosive with shrapnel',
+      unlock_level: 1
     }
   ],
   fire: [
     {
-      id: 'fire_bomb_consumable',
+      id: 'fire_bomb',
       name: 'Fire Bomb',
       category: 'fire',
       price: 25,
@@ -153,7 +153,7 @@ const CONSUMABLES = {
       unlock_level: 1
     },
     {
-      id: 'hellfire_bomb_consumable',
+      id: 'hellfire_bomb',
       name: 'Hellfire Bomb',
       category: 'fire',
       price: 70,
@@ -161,7 +161,7 @@ const CONSUMABLES = {
       unlock_level: 29
     },
     {
-      id: 'liquid_fire_bomb_consumable',
+      id: 'liquid_fire_bomb',
       name: 'Liquid Fire Bomb',
       category: 'fire',
       price: 50,
@@ -171,7 +171,7 @@ const CONSUMABLES = {
   ],
   poison: [
     {
-      id: 'poison_bomb_consumable',
+      id: 'poison_bomb',
       name: 'Poison Bomb',
       category: 'poison',
       price: 25,
@@ -179,7 +179,7 @@ const CONSUMABLES = {
       unlock_level: 1
     },
     {
-      id: 'hive_bomb_consumable',
+      id: 'hive_bomb',
       name: 'Hive Bomb',
       category: 'poison',
       price: 60,
@@ -188,14 +188,6 @@ const CONSUMABLES = {
     }
   ],
   utility: [
-    {
-      id: 'choke_bomb_consumable',
-      name: 'Choke Bomb',
-      category: 'utility',
-      price: 25,
-      description: 'Extinguishes fires and blocks vision',
-      unlock_level: 1
-    },
     {
       id: 'concertina_bomb',
       name: 'Concertina Bomb',
@@ -211,6 +203,58 @@ const CONSUMABLES = {
       price: 15,
       description: 'Creates multiple random sound effects',
       unlock_level: 1
+    },
+    {
+      id: 'flash_bomb',
+      name: 'Flash Bomb',
+      category: 'utility',
+      price: 40,
+      description: 'Blinds enemies with bright flash',
+      unlock_level: 30
+    }
+  ],
+  resupply: [
+    {
+      id: 'ammo_box',
+      name: 'Ammo Box',
+      category: 'resupply',
+      price: 65,
+      description: 'Restores ammunition for all weapons',
+      unlock_level: 5
+    },
+    {
+      id: 'tool_box',
+      name: 'Tool Box',
+      category: 'resupply',
+      price: 55,
+      description: 'Restores uses for all tools',
+      unlock_level: 10
+    }
+  ],
+  beetles: [
+    {
+      id: 'stalker_beetle',
+      name: 'Stalker Beetle',
+      category: 'beetles',
+      price: 35,
+      description: 'Tracks nearby enemies',
+      unlock_level: 25
+    },
+    {
+      id: 'choke_beetle',
+      name: 'Choke Beetle',
+      category: 'beetles',
+      price: 30,
+      description: 'Creates choking gas cloud',
+      unlock_level: 20
+    },
+    {
+      id: 'fire_beetle',
+      name: 'Fire Beetle',
+      category: 'beetles',
+      price: 40,
+      description: 'Creates fire damage area',
+      unlock_level: 30
     }
   ]
 };
@@ -222,5 +266,7 @@ const CONSUMABLE_CATEGORIES = {
   explosives: 'Explosives',
   fire: 'Fire',
   poison: 'Poison',
-  utility: 'Utility'
+  utility: 'Utility',
+  resupply: 'Resupply',
+  beetles: 'Beetles'
 };
