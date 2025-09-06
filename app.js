@@ -339,12 +339,17 @@ class HuntCompanion {
     setupTraitsDatabase() {
         const categoryFilter = document.getElementById('trait-category');
         const costFilter = document.getElementById('trait-cost');
+        const searchInput = document.getElementById('trait-search');
         
         categoryFilter.addEventListener('change', () => {
             this.renderTraitsDatabase();
         });
         
         costFilter.addEventListener('change', () => {
+            this.renderTraitsDatabase();
+        });
+        
+        searchInput.addEventListener('input', () => {
             this.renderTraitsDatabase();
         });
         
@@ -521,6 +526,7 @@ class HuntCompanion {
         const container = document.getElementById('trait-list');
         const categoryFilter = document.getElementById('trait-category').value;
         const costFilter = document.getElementById('trait-cost').value;
+        const searchTerm = document.getElementById('trait-search').value.toLowerCase();
         
         let traits = this.getAllTraits();
         
@@ -533,26 +539,43 @@ class HuntCompanion {
             traits = traits.filter(t => t.cost >= min && t.cost <= max);
         }
         
+        if (searchTerm) {
+            traits = traits.filter(t => 
+                t.name.toLowerCase().includes(searchTerm) ||
+                t.description.toLowerCase().includes(searchTerm)
+            );
+        }
+        
         container.innerHTML = '';
         
         traits.forEach(trait => {
             const isSelected = this.selectedTraits.some(t => t.id === trait.id);
             const traitEl = document.createElement('div');
-            traitEl.className = `trait-item ${isSelected ? 'selected' : ''}`;
+            traitEl.className = `trait-item ${isSelected ? 'selected' : ''} trait-type-${trait.type}`;
+            
+            let costDisplay;
+            if (trait.type === 'scarce' || trait.type === 'burn') {
+                costDisplay = trait.type === 'scarce' ? 'Scarce' : 'Burn Trait';
+            } else {
+                costDisplay = `${trait.cost} points`;
+            }
+            
             traitEl.innerHTML = `
                 <h3>${trait.name}</h3>
                 <div class="trait-info">
                     <span class="trait-category">${TRAIT_CATEGORIES[trait.category]}</span>
-                    <span class="trait-cost">${trait.cost} points</span>
+                    <span class="trait-cost">${costDisplay}</span>
                 </div>
                 <div class="trait-description">${trait.description}</div>
-                <div class="trait-level">Unlocks at Level ${trait.unlock_level}</div>
+                <div class="trait-level">Unlocks at Level ${trait.unlock_level} • ${TRAIT_TYPES[trait.type]}</div>
             `;
             
-            if (!isSelected) {
+            if (!isSelected && trait.type === 'regular') {
                 traitEl.addEventListener('click', () => {
                     this.selectTrait(trait);
                 });
+            } else if (trait.type !== 'regular') {
+                traitEl.classList.add('special-trait');
             }
             
             container.appendChild(traitEl);
@@ -560,6 +583,11 @@ class HuntCompanion {
     }
 
     selectTrait(trait) {
+        if (trait.type !== 'regular') {
+            alert(`${trait.name} is a ${TRAIT_TYPES[trait.type]} trait and cannot be selected in the loadout builder.`);
+            return;
+        }
+        
         if (this.selectedTraits.length >= this.maxTraits) {
             alert(`Maximum ${this.maxTraits} traits allowed`);
             return;

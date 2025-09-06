@@ -425,6 +425,22 @@ body {
     margin-bottom: var(--spacing-lg);
 }
 
+.search-container .search-input {
+    width: 100%;
+    min-height: var(--touch-target);
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border);
+    border-radius: var(--spacing-sm);
+    color: var(--text-primary);
+    padding: 0 var(--spacing-md);
+    font-size: var(--font-size-base);
+}
+
+.search-container .search-input:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
 .search-input, .text-input {
     width: 100%;
     min-height: var(--touch-target);
@@ -533,6 +549,24 @@ body {
     border-color: var(--accent);
     cursor: default;
     opacity: 0.6;
+}
+
+.trait-item.special-trait {
+    border-left: 4px solid var(--text-secondary);
+    cursor: help;
+}
+
+.trait-item.trait-type-scarce {
+    border-left-color: #ff6b35;
+}
+
+.trait-item.trait-type-burn {
+    border-left-color: #dc3545;
+}
+
+.trait-item.special-trait:hover {
+    background-color: var(--bg-secondary);
+    border-color: var(--text-secondary);
 }
 
 .trait-item h3 {
