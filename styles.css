@@ -877,6 +877,170 @@ body {
     text-align: center;
 }
 
+/* Blueprint Information Styles */
+.blueprint-info {
+    padding: var(--spacing-lg);
+}
+
+.blueprint-overview {
+    margin-bottom: var(--spacing-lg);
+}
+
+.total-workbenches {
+    font-size: var(--font-size-lg);
+    color: var(--accent-color);
+    text-align: center;
+    padding: var(--spacing-md);
+    background-color: var(--bg-secondary);
+    border-radius: var(--spacing-sm);
+    margin-bottom: var(--spacing-lg);
+}
+
+.farming-locations {
+    margin-bottom: var(--spacing-lg);
+}
+
+.farming-location {
+    padding: var(--spacing-md);
+    background-color: var(--bg-tertiary);
+    border-radius: var(--spacing-sm);
+    margin-bottom: var(--spacing-sm);
+    border-left: 3px solid var(--accent-color);
+}
+
+.farming-note {
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+.blueprint-mechanics, .farming-strategy {
+    margin-bottom: var(--spacing-lg);
+    padding: var(--spacing-md);
+    background-color: var(--bg-secondary);
+    border-radius: var(--spacing-sm);
+}
+
+.compound-workbenches h3 {
+    margin-bottom: var(--spacing-md);
+}
+
+.workbench-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: var(--spacing-md);
+}
+
+.workbench-item {
+    padding: var(--spacing-md);
+    background-color: var(--bg-secondary);
+    border-radius: var(--spacing-sm);
+    text-align: center;
+    border: 2px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.workbench-item.high-count {
+    border-color: var(--accent-color);
+    background-color: color-mix(in srgb, var(--accent-color) 10%, var(--bg-secondary));
+}
+
+.workbench-item.medium-count {
+    border-color: color-mix(in srgb, var(--accent-color) 70%, transparent);
+}
+
+.workbench-item.low-count {
+    border-color: var(--border-color);
+}
+
+.compound-name {
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-sm);
+    font-size: var(--font-size-sm);
+}
+
+.workbench-count-large {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--accent-color);
+    margin-bottom: var(--spacing-xs);
+}
+
+.workbench-label {
+    font-size: var(--font-size-xs);
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.compound-badges {
+    margin-top: var(--spacing-sm);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-xs);
+    justify-content: center;
+}
+
+.badge {
+    font-size: var(--font-size-xs);
+    padding: 2px 6px;
+    border-radius: var(--spacing-xs);
+    text-transform: uppercase;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+}
+
+.badge.blueprint {
+    background-color: var(--accent-color);
+    color: var(--bg-primary);
+}
+
+.badge.farming {
+    background-color: #28a745;
+    color: white;
+}
+
+.badge.special {
+    background-color: #ffc107;
+    color: var(--bg-primary);
+}
+
+.workbench-count {
+    font-size: var(--font-size-xs);
+    color: var(--text-secondary);
+    background-color: var(--bg-tertiary);
+    padding: 2px 6px;
+    border-radius: var(--spacing-xs);
+    margin-right: var(--spacing-sm);
+}
+
+.blueprint-hotspot, .top-farming {
+    font-size: var(--font-size-xs);
+    padding: 2px 6px;
+    border-radius: var(--spacing-xs);
+    text-transform: uppercase;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+}
+
+.blueprint-hotspot {
+    background-color: var(--accent-color);
+    color: var(--bg-primary);
+}
+
+.top-farming {
+    background-color: #28a745;
+    color: white;
+}
+
+.compound-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-xs);
+    align-items: center;
+    margin-top: var(--spacing-sm);
+}
+
 /* Responsive Design */
 @media (min-width: 768px) {
     :root {

@@ -743,6 +743,10 @@ class HuntCompanion {
                 content += this.renderBossInfo();
             }
             
+            if (infoType === 'blueprints') {
+                content += this.renderBlueprintInfo(map);
+            }
+            
             mapEl.innerHTML = content;
             container.appendChild(mapEl);
         });
@@ -785,11 +789,20 @@ class HuntCompanion {
         
         map.compounds.forEach(compound => {
             const specialBadge = compound.special ? `<span class="special-badge">${compound.special}</span>` : '';
+            const workbenchInfo = compound.workbenches ? `<span class="workbench-count">${compound.workbenches} workbenches</span>` : '';
+            const blueprintHotspot = compound.blueprint_hotspot ? '<span class="blueprint-hotspot">Blueprint Hotspot</span>' : '';
+            const topFarming = compound.top_farming ? '<span class="top-farming">Top Farming Location</span>' : '';
+            
             compoundsHtml += `
                 <div class="compound-item">
                     <h4>${compound.name}</h4>
                     ${specialBadge}
                     ${compound.location ? `<p class="boss-location">Boss Lair: ${compound.location}</p>` : ''}
+                    <div class="compound-meta">
+                        ${workbenchInfo}
+                        ${blueprintHotspot}
+                        ${topFarming}
+                    </div>
                 </div>
             `;
         });
@@ -846,6 +859,78 @@ class HuntCompanion {
         
         bossHtml += '</div></div>';
         return bossHtml;
+    }
+
+    renderBlueprintInfo(map) {
+        let blueprintHtml = '<div class="blueprint-info">';
+        
+        blueprintHtml += `<h2>Blueprint & Weapon Unlock Information - ${map.name}</h2>`;
+        
+        blueprintHtml += '<div class="blueprint-overview">';
+        blueprintHtml += `<div class="total-workbenches"><strong>Total Workbenches: ${map.total_workbenches}</strong></div>`;
+        
+        // Best farming locations on this map
+        const farmingLocations = BLUEPRINT_SYSTEM.best_farming_locations.filter(loc => loc.map === map.name);
+        if (farmingLocations.length > 0) {
+            blueprintHtml += '<div class="farming-locations">';
+            blueprintHtml += '<h3>Best Farming Locations</h3>';
+            farmingLocations.forEach(location => {
+                blueprintHtml += `
+                    <div class="farming-location">
+                        <strong>${location.compound}</strong> - ${location.workbenches} workbenches
+                        ${location.note ? `<br><span class="farming-note">${location.note}</span>` : ''}
+                    </div>
+                `;
+            });
+            blueprintHtml += '</div>';
+        }
+        
+        // Blueprint mechanics
+        blueprintHtml += '<div class="blueprint-mechanics">';
+        blueprintHtml += '<h3>How Blueprints Work</h3>';
+        blueprintHtml += `<p><strong>Blueprints:</strong> ${BLUEPRINT_SYSTEM.mechanics.blueprints.function}</p>`;
+        blueprintHtml += `<p><strong>Gun Oil:</strong> ${BLUEPRINT_SYSTEM.mechanics.gun_oil.function}</p>`;
+        blueprintHtml += `<p><strong>Important:</strong> ${BLUEPRINT_SYSTEM.mechanics.workbench_spawns.note}</p>`;
+        blueprintHtml += '</div>';
+        
+        // Farming strategy
+        blueprintHtml += '<div class="farming-strategy">';
+        blueprintHtml += '<h3>Farming Strategy</h3>';
+        blueprintHtml += `<p><strong>Route Planning:</strong> ${BLUEPRINT_SYSTEM.farming_strategy.route_planning}</p>`;
+        blueprintHtml += `<p><strong>Expectation:</strong> ${BLUEPRINT_SYSTEM.farming_strategy.expectation}</p>`;
+        blueprintHtml += `<p><strong>Coverage:</strong> ${BLUEPRINT_SYSTEM.farming_strategy.coverage}</p>`;
+        blueprintHtml += '</div>';
+        
+        // Compound breakdown
+        blueprintHtml += '<div class="compound-workbenches">';
+        blueprintHtml += '<h3>Workbench Locations by Compound</h3>';
+        blueprintHtml += '<div class="workbench-grid">';
+        
+        // Sort compounds by workbench count (highest first)
+        const sortedCompounds = [...map.compounds].sort((a, b) => (b.workbenches || 0) - (a.workbenches || 0));
+        
+        sortedCompounds.forEach(compound => {
+            if (compound.workbenches) {
+                const badges = [];
+                if (compound.blueprint_hotspot) badges.push('<span class="badge blueprint">Blueprint Hotspot</span>');
+                if (compound.top_farming) badges.push('<span class="badge farming">Top Farming</span>');
+                if (compound.special) badges.push(`<span class="badge special">${compound.special}</span>`);
+                
+                blueprintHtml += `
+                    <div class="workbench-item ${compound.workbenches >= 4 ? 'high-count' : compound.workbenches >= 3 ? 'medium-count' : 'low-count'}">
+                        <div class="compound-name">${compound.name}</div>
+                        <div class="workbench-count-large">${compound.workbenches}</div>
+                        <div class="workbench-label">workbenches</div>
+                        ${badges.length > 0 ? `<div class="compound-badges">${badges.join('')}</div>` : ''}
+                    </div>
+                `;
+            }
+        });
+        
+        blueprintHtml += '</div></div>';
+        blueprintHtml += '</div>';
+        
+        return blueprintHtml;
     }
 
     saveSettings() {

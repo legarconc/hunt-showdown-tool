@@ -8,23 +8,24 @@ const MAPS = {
     atmosphere: 'Dark swampland',
     size: '1000m x 1000m',
     compounds: [
-      { name: "Alain & Son's Fish", boss_lair: true },
-      { name: "Alice Farm", boss_lair: true },
-      { name: "Blanchett Graves", boss_lair: true },
-      { name: "Catfish Grove", boss_lair: true },
-      { name: "Cyprus Huts", boss_lair: true },
-      { name: "Darrow Livestock", boss_lair: true },
-      { name: "Davant Ranch", boss_lair: true },
-      { name: "Healing Waters Church", boss_lair: true },
-      { name: "Lockbay Docks", boss_lair: true },
-      { name: "Pitching Crematorium", boss_lair: true },
-      { name: "Port Reeker", boss_lair: true },
-      { name: "Reynard Mill & Lumber", boss_lair: true },
-      { name: "Scupper Lake", boss_lair: true },
-      { name: "Stillwater Bend", boss_lair: true },
-      { name: "The Chapel of Madonna Noir", boss_lair: true },
-      { name: "The Slaughterhouse", boss_lair: true }
+      { name: "Alain & Son's Fish", boss_lair: true, workbenches: 1 },
+      { name: "Alice Farm", boss_lair: true, workbenches: 2 },
+      { name: "Blanchett Graves", boss_lair: true, workbenches: 1 },
+      { name: "Catfish Grove", boss_lair: true, workbenches: 2 },
+      { name: "Cyprus Huts", boss_lair: true, workbenches: 1 },
+      { name: "Darrow Livestock", boss_lair: true, workbenches: 4, blueprint_hotspot: true },
+      { name: "Davant Ranch", boss_lair: true, workbenches: 2 },
+      { name: "Healing Waters Church", boss_lair: true, workbenches: 2 },
+      { name: "Lockbay Docks", boss_lair: true, workbenches: 4, blueprint_hotspot: true },
+      { name: "Pitching Crematorium", boss_lair: true, workbenches: 1 },
+      { name: "Port Reeker", boss_lair: true, workbenches: 3 },
+      { name: "Reynard Mill & Lumber", boss_lair: true, workbenches: 3 },
+      { name: "Scupper Lake", boss_lair: true, workbenches: 1 },
+      { name: "Stillwater Bend", boss_lair: true, workbenches: 3 },
+      { name: "The Chapel of Madonna Noir", boss_lair: true, workbenches: 1 },
+      { name: "The Slaughterhouse", boss_lair: true, workbenches: 1 }
     ],
+    total_workbenches: 32,
     extraction_points: 15,
     special_features: [
       'Water hazards slow movement',
@@ -49,23 +50,24 @@ const MAPS = {
     atmosphere: 'Industrial farmland',
     size: '1000m x 1000m',
     compounds: [
-      { name: "Arden Parish", boss_lair: true },
-      { name: "Blanc Brinery", boss_lair: true },
-      { name: "Bradley & Craven Brickworks", boss_lair: true },
-      { name: "C&A Lumber", boss_lair: true },
-      { name: "Fort Carmick", boss_lair: true },
-      { name: "Godard Docks", boss_lair: true },
-      { name: "Golden Acres", boss_lair: true },
-      { name: "Hemlock and Hide", boss_lair: true },
-      { name: "Iron Works", boss_lair: true },
-      { name: "Lawson Station", boss_lair: true },
-      { name: "Maw Battery", boss_lair: true },
-      { name: "Nicholls Prison", boss_lair: true },
-      { name: "Salter's Pork", boss_lair: true },
-      { name: "Sweetbell Flour", boss_lair: true },
-      { name: "Windy Run", boss_lair: true },
-      { name: "Wolfshead Arsenal", boss_lair: true }
+      { name: "Arden Parish", boss_lair: true, workbenches: 2 },
+      { name: "Blanc Brinery", boss_lair: true, workbenches: 4, blueprint_hotspot: true },
+      { name: "Bradley & Craven Brickworks", boss_lair: true, workbenches: 2 },
+      { name: "C&A Lumber", boss_lair: true, workbenches: 6, blueprint_hotspot: true, top_farming: true },
+      { name: "Fort Carmick", boss_lair: true, workbenches: 3 },
+      { name: "Godard Docks", boss_lair: true, workbenches: 3 },
+      { name: "Golden Acres", boss_lair: true, workbenches: 2 },
+      { name: "Hemlock and Hide", boss_lair: true, workbenches: 1 },
+      { name: "Iron Works", boss_lair: true, workbenches: 1 },
+      { name: "Lawson Station", boss_lair: true, workbenches: 3 },
+      { name: "Maw Battery", boss_lair: true, workbenches: 1 },
+      { name: "Nicholls Prison", boss_lair: true, workbenches: 1 },
+      { name: "Salter's Pork", boss_lair: true, workbenches: 2 },
+      { name: "Sweetbell Flour", boss_lair: true, workbenches: 2 },
+      { name: "Windy Run", boss_lair: true, workbenches: 2 },
+      { name: "Wolfshead Arsenal", boss_lair: true, workbenches: 2 }
     ],
+    total_workbenches: 37,
     extraction_points: 18,
     special_features: [
       'Industrial factories with complex interiors',
@@ -90,23 +92,24 @@ const MAPS = {
     atmosphere: 'Autumn industrial',
     size: '1000m x 1000m',
     compounds: [
-      { name: "Kingsnake Mine", boss_lair: true },
-      { name: "Stanley Coal Company", boss_lair: true },
-      { name: "Heritage Pork", boss_lair: true },
-      { name: "Pearl Plantation", boss_lair: true },
-      { name: "Moses Poultry", boss_lair: true },
-      { name: "Weeping Stone Mill", boss_lair: true },
-      { name: "Forked River Fishery", boss_lair: true },
-      { name: "Ash Creek Lumber", boss_lair: true },
-      { name: "Seven Sisters Estate", boss_lair: true },
-      { name: "Pelican Island Prison", boss_lair: true },
-      { name: "First Testimonial Church", boss_lair: true },
-      { name: "Upper DeSalle", boss_lair: true },
-      { name: "Fort Bolden", boss_lair: true },
-      { name: "Darin Shipyard", boss_lair: true },
-      { name: "Reeves Quarry", boss_lair: true },
-      { name: "Lower DeSalle", boss_lair: true }
+      { name: "Kingsnake Mine", boss_lair: true, workbenches: 3 },
+      { name: "Stanley Coal Company", boss_lair: true, workbenches: 2 },
+      { name: "Heritage Pork", boss_lair: true, workbenches: 2 },
+      { name: "Pearl Plantation", boss_lair: true, workbenches: 2 },
+      { name: "Moses Poultry", boss_lair: true, workbenches: 2 },
+      { name: "Weeping Stone Mill", boss_lair: true, workbenches: 2 },
+      { name: "Forked River Fishery", boss_lair: true, workbenches: 2 },
+      { name: "Ash Creek Lumber", boss_lair: true, workbenches: 2 },
+      { name: "Seven Sisters Estate", boss_lair: true, workbenches: 2 },
+      { name: "Pelican Island Prison", boss_lair: true, workbenches: 1 },
+      { name: "First Testimonial Church", boss_lair: true, workbenches: 1 },
+      { name: "Upper DeSalle", boss_lair: true, workbenches: 2 },
+      { name: "Fort Bolden", boss_lair: true, workbenches: 2 },
+      { name: "Darin Shipyard", boss_lair: true, workbenches: 2 },
+      { name: "Reeves Quarry", boss_lair: true, workbenches: 1 },
+      { name: "Lower DeSalle", boss_lair: true, workbenches: 3 }
     ],
+    total_workbenches: 31,
     extraction_points: 15,
     special_features: [
       'Verticality with hills and elevated terrain',
@@ -131,23 +134,24 @@ const MAPS = {
     atmosphere: 'Mountain mining town',
     size: '1000m x 1000m',
     compounds: [
-      { name: "Blackthorn Stockyard", boss_lair: true, location: "main building" },
-      { name: "The Gasworks", boss_lair: true, location: "North building ground floor", special: "Contains two clues" },
-      { name: "Terminus Railyard", boss_lair: true, location: "main East building ground floor" },
-      { name: "Grizzly Lodge", boss_lair: true, location: "main building, excludes basement" },
-      { name: "O'Donovan Stone", boss_lair: true, location: "main Southwest building" },
-      { name: "Monteros Malt", boss_lair: true, location: "main building" },
-      { name: "East Mountain Corn", boss_lair: true, location: "main building" },
-      { name: "Deadfall Timber", boss_lair: true, location: "main building ground floor" },
-      { name: "La Plata Mine", boss_lair: true, location: "main building" },
-      { name: "Oro Gordo Mine", boss_lair: true, location: "main building" },
-      { name: "Split River Mill", boss_lair: true, location: "main building North section" },
-      { name: "Machine Gorge", boss_lair: true, location: "main building" },
-      { name: "Preston Oil Field", boss_lair: true, location: "main South building", special: "Contains two clues" },
-      { name: "Kingfisher Foundry", boss_lair: true, location: "Southeast section" },
-      { name: "Graystone Pit", boss_lair: true, location: "underground" },
-      { name: "Miner's Folly", boss_lair: true, location: "main building, excludes ground floor" }
+      { name: "Blackthorn Stockyard", boss_lair: true, location: "main building", workbenches: 2 },
+      { name: "The Gasworks", boss_lair: true, location: "North building ground floor", special: "Contains two clues", workbenches: 3 },
+      { name: "Terminus Railyard", boss_lair: true, location: "main East building ground floor", workbenches: 3 },
+      { name: "Grizzly Lodge", boss_lair: true, location: "main building, excludes basement", workbenches: 2 },
+      { name: "O'Donovan Stone", boss_lair: true, location: "main Southwest building", workbenches: 2 },
+      { name: "Monteros Malt", boss_lair: true, location: "main building", workbenches: 2 },
+      { name: "East Mountain Corn", boss_lair: true, location: "main building", workbenches: 2 },
+      { name: "Deadfall Timber", boss_lair: true, location: "main building ground floor", workbenches: 3 },
+      { name: "La Plata Mine", boss_lair: true, location: "main building", workbenches: 2 },
+      { name: "Oro Gordo Mine", boss_lair: true, location: "main building", workbenches: 3 },
+      { name: "Split River Mill", boss_lair: true, location: "main building North section", workbenches: 2 },
+      { name: "Machine Gorge", boss_lair: true, location: "main building", workbenches: 2 },
+      { name: "Preston Oil Field", boss_lair: true, location: "main South building", special: "Contains two clues", workbenches: 3 },
+      { name: "Kingfisher Foundry", boss_lair: true, location: "Southeast section", workbenches: 2 },
+      { name: "Graystone Pit", boss_lair: true, location: "underground", workbenches: 2 },
+      { name: "Miner's Folly", boss_lair: true, location: "main building, excludes ground floor", workbenches: 2, special_feature: "Sewing table functions as workbench" }
     ],
+    total_workbenches: 37,
     extraction_points: 15,
     special_features: [
       'Mountain terrain with elevated positions',
@@ -185,6 +189,40 @@ const MAP_FEATURES = {
     boss_spawn_locations: 'Any compound can host boss lair',
     spawn_system: 'Random from predefined locations with 110m minimum separation',
     clue_system: 'Each compound contains at least one clue location'
+  }
+};
+
+const BLUEPRINT_SYSTEM = {
+  mechanics: {
+    blueprints: {
+      function: 'Provides 3 random weapon unlocks from any weapon family',
+      unlock_order: 'Respects weapon progression order',
+      special_feature: 'Can unlock tools/consumables before required Bloodline Rank',
+      spawn_location: 'Exclusively on workbenches (changed in Update 1.15)'
+    },
+    gun_oil: {
+      function: 'Unlocks next available unlock in currently equipped weapon family',
+      fallback: 'If equipped weapon family is complete, provides random available unlock',
+      spawn_location: 'Exclusively on workbenches (changed in Update 1.15)'
+    },
+    workbench_spawns: {
+      possible_items: ['Blueprints', 'Gun Oil', 'Hunt Dollar purses', 'Blood Bond purses', 'Weapon variants', 'Special ammo boxes'],
+      spawn_rate: 'Completely random - no guaranteed spawns',
+      independence: 'Each workbench has independent spawn chance',
+      note: 'Any weapons spawned are variants, not base weapons'
+    }
+  },
+  best_farming_locations: [
+    { map: 'Lawson Delta', compound: 'C&A Lumber', workbenches: 6, note: 'Highest concentration' },
+    { map: 'Stillwater Bayou', compound: 'Darrow Livestock', workbenches: 4 },
+    { map: 'Stillwater Bayou', compound: 'Lockbay Docks', workbenches: 4 },
+    { map: 'Lawson Delta', compound: 'Blanc Brinery', workbenches: 4 }
+  ],
+  farming_strategy: {
+    route_planning: 'Focus on compounds with 3+ workbenches',
+    expectation: 'Don\'t expect guaranteed spawns - it\'s all RNG',
+    coverage: 'Consider covering multiple compounds rather than camping one',
+    efficiency: 'Multiple workbenches in compound does NOT increase spawn chances'
   }
 };
 

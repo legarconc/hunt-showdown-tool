@@ -48,6 +48,8 @@ Building a mobile-first companion web application for Hunt: Showdown 1896 that w
 - **Map themes and descriptions** with strategic information
 - **Special features**: Double-clue compounds, extraction points, environmental hazards
 - **Boss information**: All 5 bosses with health, weaknesses, and behavior
+- **Blueprint system**: Complete workbench locations and farming strategies
+- **137 total workbenches** across all maps with location-specific data
 - **Search functionality**: Search maps, compounds, and features
 - **Strategic notes**: Tactical advice for each map
 
@@ -78,7 +80,7 @@ hunt-showdown-tool/
     ├── tools.js        # Tools database (correctly categorized)
     ├── consumables.js  # Consumables database (correctly categorized)  
     ├── traits.js       # Traits database with accurate wiki data
-    └── maps.js         # Complete maps database with compounds and strategy
+    └── maps.js         # Complete maps database with compounds, strategy, and blueprint locations
 ```
 
 ### 🎨 Design System
@@ -115,7 +117,7 @@ http://localhost:8080
 - ✅ **Tools**: Complete tool database with correct categorization  
 - ✅ **Consumables**: Complete consumables with proper separation from tools
 - ✅ **Traits**: 29 traits with accurate costs and descriptions from wiki
-- ✅ **Maps**: 4 complete maps with 64 total compounds and strategic information
+- ✅ **Maps**: 4 complete maps with 64 total compounds, strategic information, and blueprint locations
 - ✅ **Search**: Implemented across weapons, traits, and maps with real-time filtering
 - ✅ **Mobile UX**: Fully optimized for one-handed mobile gaming use
 
