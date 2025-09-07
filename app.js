@@ -23,6 +23,7 @@ class HuntCompanion {
         this.setupLoadoutBuilder();
         this.setupWeaponDatabase();
         this.setupTraitsDatabase();
+        this.setupMapsDatabase();
         this.setupSavedBuilds();
         this.setupModals();
         this.loadStoredData();
@@ -52,6 +53,8 @@ class HuntCompanion {
             this.renderWeaponDatabase();
         } else if (screen === 'traits') {
             this.renderTraitsDatabase();
+        } else if (screen === 'maps') {
+            this.renderMapsDatabase();
         } else if (screen === 'saved') {
             this.renderSavedBuilds();
         }
@@ -355,6 +358,24 @@ class HuntCompanion {
         
         document.getElementById('clear-traits').addEventListener('click', () => {
             this.clearTraits();
+        });
+    }
+
+    setupMapsDatabase() {
+        const mapFilter = document.getElementById('map-filter');
+        const infoType = document.getElementById('info-type');
+        const searchInput = document.getElementById('map-search');
+        
+        mapFilter.addEventListener('change', () => {
+            this.renderMapsDatabase();
+        });
+        
+        infoType.addEventListener('change', () => {
+            this.renderMapsDatabase();
+        });
+        
+        searchInput.addEventListener('input', () => {
+            this.renderMapsDatabase();
         });
     }
 
@@ -670,6 +691,161 @@ class HuntCompanion {
             
             container.appendChild(traitEl);
         });
+    }
+
+    renderMapsDatabase() {
+        const container = document.getElementById('map-content');
+        const mapFilter = document.getElementById('map-filter').value;
+        const infoType = document.getElementById('info-type').value;
+        const searchTerm = document.getElementById('map-search').value.toLowerCase();
+        
+        let maps = Object.values(MAPS);
+        
+        if (mapFilter !== 'all') {
+            maps = maps.filter(m => m.id === mapFilter);
+        }
+        
+        if (searchTerm) {
+            maps = maps.filter(m => 
+                m.name.toLowerCase().includes(searchTerm) ||
+                m.description.toLowerCase().includes(searchTerm) ||
+                m.compounds.some(c => c.name.toLowerCase().includes(searchTerm)) ||
+                m.special_features.some(f => f.toLowerCase().includes(searchTerm))
+            );
+        }
+        
+        container.innerHTML = '';
+        
+        if (maps.length === 0) {
+            container.innerHTML = '<div class="empty-state"><h3>No maps found</h3><p>Try adjusting your search or filters</p></div>';
+            return;
+        }
+        
+        maps.forEach(map => {
+            const mapEl = document.createElement('div');
+            mapEl.className = 'map-card';
+            
+            let content = '';
+            
+            if (infoType === 'overview' || infoType === 'all') {
+                content += this.renderMapOverview(map);
+            }
+            
+            if (infoType === 'compounds' || infoType === 'all') {
+                content += this.renderMapCompounds(map);
+            }
+            
+            if (infoType === 'strategy' || infoType === 'all') {
+                content += this.renderMapStrategy(map);
+            }
+            
+            if (infoType === 'bosses') {
+                content += this.renderBossInfo();
+            }
+            
+            mapEl.innerHTML = content;
+            container.appendChild(mapEl);
+        });
+    }
+
+    renderMapOverview(map) {
+        return `
+            <div class="map-overview">
+                <div class="map-header">
+                    <h2>${map.name}</h2>
+                    <div class="map-meta">
+                        <span class="map-theme">${map.theme}</span>
+                        <span class="map-size">${map.size}</span>
+                        <span class="map-extractions">${map.extraction_points} extraction points</span>
+                    </div>
+                </div>
+                <div class="map-description">
+                    <p>${map.description}</p>
+                </div>
+                <div class="map-stats">
+                    <div class="stat-item">
+                        <span class="stat-label">Release:</span>
+                        <span class="stat-value">${map.release_date}</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Atmosphere:</span>
+                        <span class="stat-value">${map.atmosphere}</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Compounds:</span>
+                        <span class="stat-value">${map.compounds.length}</span>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    renderMapCompounds(map) {
+        let compoundsHtml = '<div class="map-compounds"><h3>Compounds</h3><div class="compound-grid">';
+        
+        map.compounds.forEach(compound => {
+            const specialBadge = compound.special ? `<span class="special-badge">${compound.special}</span>` : '';
+            compoundsHtml += `
+                <div class="compound-item">
+                    <h4>${compound.name}</h4>
+                    ${specialBadge}
+                    ${compound.location ? `<p class="boss-location">Boss Lair: ${compound.location}</p>` : ''}
+                </div>
+            `;
+        });
+        
+        compoundsHtml += '</div></div>';
+        return compoundsHtml;
+    }
+
+    renderMapStrategy(map) {
+        let strategyHtml = '<div class="map-strategy">';
+        
+        if (map.special_features && map.special_features.length > 0) {
+            strategyHtml += '<h3>Special Features</h3><ul class="feature-list">';
+            map.special_features.forEach(feature => {
+                strategyHtml += `<li>${feature}</li>`;
+            });
+            strategyHtml += '</ul>';
+        }
+        
+        if (map.strategic_notes && map.strategic_notes.length > 0) {
+            strategyHtml += '<h3>Strategic Notes</h3><ul class="strategy-list">';
+            map.strategic_notes.forEach(note => {
+                strategyHtml += `<li>${note}</li>`;
+            });
+            strategyHtml += '</ul>';
+        }
+        
+        strategyHtml += '</div>';
+        return strategyHtml;
+    }
+
+    renderBossInfo() {
+        let bossHtml = '<div class="boss-info"><h2>Boss Information</h2><div class="boss-grid">';
+        
+        Object.values(BOSS_TYPES).forEach(boss => {
+            bossHtml += `
+                <div class="boss-card">
+                    <h3>${boss.name}</h3>
+                    <div class="boss-stats">
+                        <div class="boss-stat">
+                            <span class="stat-label">Health:</span>
+                            <span class="stat-value">${boss.health}</span>
+                        </div>
+                        <div class="boss-stat">
+                            <span class="stat-label">Weakness:</span>
+                            <span class="stat-value">${boss.weaknesses}</span>
+                        </div>
+                    </div>
+                    <p class="boss-behavior">${boss.behavior}</p>
+                    <div class="boss-drops">Drops: ${boss.drops}</div>
+                </div>
+            `;
+        });
+        
+        bossHtml += '</div></div>';
+        return bossHtml;
     }
 
     saveSettings() {

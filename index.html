@@ -22,6 +22,10 @@
             <span class="nav-icon">⭐</span>
             <span class="nav-label">Traits</span>
         </button>
+        <button class="nav-btn" data-screen="maps" aria-label="Maps Database">
+            <span class="nav-icon">🗺️</span>
+            <span class="nav-label">Maps</span>
+        </button>
         <button class="nav-btn" data-screen="saved" aria-label="Saved Builds">
             <span class="nav-icon">💾</span>
             <span class="nav-label">Saved</span>
@@ -201,6 +205,34 @@
             </div>
         </section>
 
+        <!-- Maps Screen -->
+        <section class="screen" id="maps-screen">
+            <header class="screen-header">
+                <h1>Maps</h1>
+                <div class="search-container">
+                    <input type="text" class="search-input" id="map-search" placeholder="Search maps, compounds, or features...">
+                </div>
+                <div class="filters">
+                    <select class="filter-select" id="map-filter">
+                        <option value="all">All Maps</option>
+                        <option value="stillwater_bayou">Stillwater Bayou</option>
+                        <option value="lawson_delta">Lawson Delta</option>
+                        <option value="desalle">DeSalle</option>
+                        <option value="mammons_gulch">Mammon's Gulch</option>
+                    </select>
+                    <select class="filter-select" id="info-type">
+                        <option value="overview">Overview</option>
+                        <option value="compounds">Compounds</option>
+                        <option value="strategy">Strategy</option>
+                        <option value="bosses">Boss Info</option>
+                    </select>
+                </div>
+            </header>
+            <div class="map-content" id="map-content">
+                <div class="map-overview" id="map-overview"></div>
+            </div>
+        </section>
+
         <!-- Saved Builds Screen -->
         <section class="screen" id="saved-screen">
             <header class="screen-header">
@@ -247,6 +279,7 @@
     <script src="data/tools.js"></script>
     <script src="data/consumables.js"></script>
     <script src="data/traits.js"></script>
+    <script src="data/maps.js"></script>
     <script src="app.js"></script>
 </body>
 </html>
